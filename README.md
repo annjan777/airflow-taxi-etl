@@ -1,27 +1,32 @@
-# Orchestrated ETL Pipeline with Apache Airflow
+# 🚀 NYC Taxi ETL Pipeline using Apache Airflow
 
-## Overview
-This project demonstrates a production-grade ETL (Extract, Transform, Load) pipeline built using Apache Airflow. It ingests NYC TLC taxi trip data (Parquet), validates and transforms it, and loads aggregated results into a PostgreSQL data warehouse.
+## 📌 Overview
 
-The pipeline is containerized using Docker and designed to handle real-world data challenges such as schema variability, large datasets, and fault tolerance.
+This project demonstrates a **production-grade ETL pipeline** built using **Apache Airflow**, **Docker**, and **PostgreSQL**.
+
+The pipeline:
+- Extracts NYC TLC taxi data (Parquet)
+- Validates data quality
+- Transforms and aggregates it
+- Loads it into a PostgreSQL warehouse
 
 ---
 
-## Architecture
+## 🧠 Architecture
 
 Airflow Scheduler  
 ↓  
-Extract (NYC TLC Parquet Data)  
+Extract (Parquet Data)  
 ↓  
 Validate (Data Quality Checks)  
 ↓  
 Transform (Cleaning + Aggregation)  
 ↓  
-Load (PostgreSQL Data Warehouse)  
+Load (PostgreSQL)
 
 ---
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 - Apache Airflow (2.8)
 - Python (Pandas, PyArrow, SQLAlchemy)
@@ -30,43 +35,58 @@ Load (PostgreSQL Data Warehouse)
 
 ---
 
-## Pipeline Details
+## 🔄 Pipeline Tasks
 
 ### 1. Extract
-- Downloads NYC taxi dataset in Parquet format
-- Stores raw data in Airflow container
+- Downloads NYC taxi dataset
+- Stores raw parquet file
 
 ### 2. Validate
-- Ensures required columns exist
-- Checks for data consistency (positive fares, valid rows)
-- Prevents corrupt data from entering pipeline
+- Checks:
+  - Required columns
+  - Positive fare values
+  - Data integrity
 
 ### 3. Transform
-- Cleans invalid records
-- Handles missing columns dynamically
-- Performs daily aggregation:
-  - Total trips
-  - Revenue
-  - Average fare
-  - Average distance
+- Cleans invalid rows
+- Handles schema differences
+- Aggregates daily metrics:
+  - total trips
+  - revenue
+  - average fare
+  - distance
 
 ### 4. Load
-- Loads processed data into PostgreSQL
-- Verifies row count for data integrity
+- Loads into PostgreSQL table: `fact_daily_trips`
+- Verifies row count
 
 ---
 
-## Key Features
+## ✅ Pipeline Success
 
-- DAG-based workflow orchestration
-- Fault-tolerant retry mechanism
-- Schema-aware ingestion using PyArrow
-- Memory-efficient large file processing
-- Data validation layer
-- End-to-end Dockerized setup
+### DAG Graph (All Tasks Successful)
+![Airflow DAG Graph](images/dag_graph.png)
+
+### DAG Runs
+![Airflow DAG Runs](images/dag_runs.png)
+
+### Task Logs
+![Airflow Task Logs](images/task_logs.png)
 
 ---
 
+## 📊 Sample Output (PostgreSQL)
+
+![Postgres Output](images/postgres_output.png)
+
+Example:
+
+| trip_date | total_trips | gross_revenue | avg_fare | avg_distance |
+|----------|------------|---------------|----------|--------------|
+| 2023-01-01 | 15000 | 245000.50 | 16.2 | 3.4 |
+| 2023-01-02 | 14800 | 240000.30 | 16.1 | 3.5 |
+
+---
 ## How to Run
 
 ### 1. Start services
