@@ -1,0 +1,16 @@
+[2026-04-13T21:09:21.930+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: nyc_taxi_daily_etl.extract manual__2026-04-13T20:57:14.052487+00:00 [queued]>
+[2026-04-13T21:09:21.935+0000] {taskinstance.py:1957} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: nyc_taxi_daily_etl.extract manual__2026-04-13T20:57:14.052487+00:00 [queued]>
+[2026-04-13T21:09:21.935+0000] {taskinstance.py:2171} INFO - Starting attempt 5 of 6
+[2026-04-13T21:09:21.943+0000] {taskinstance.py:2192} INFO - Executing <Task(PythonOperator): extract> on 2026-04-13 20:57:14.052487+00:00
+[2026-04-13T21:09:21.946+0000] {standard_task_runner.py:60} INFO - Started process 181 to run task
+[2026-04-13T21:09:21.948+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'nyc_taxi_daily_etl', 'extract', 'manual__2026-04-13T20:57:14.052487+00:00', '--job-id', '58', '--raw', '--subdir', 'DAGS_FOLDER/nyc_taxi_etl.py', '--cfg-path', '/tmp/tmpemmpqklf']
+[2026-04-13T21:09:21.950+0000] {standard_task_runner.py:88} INFO - Job 58: Subtask extract
+[2026-04-13T21:09:21.989+0000] {task_command.py:423} INFO - Running <TaskInstance: nyc_taxi_daily_etl.extract manual__2026-04-13T20:57:14.052487+00:00 [running]> on host ce933bb4fe18
+[2026-04-13T21:09:22.206+0000] {taskinstance.py:2481} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='annjan' AIRFLOW_CTX_DAG_ID='nyc_taxi_daily_etl' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2026-04-13T20:57:14.052487+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-13T20:57:14.052487+00:00'
+[2026-04-13T21:09:22.207+0000] {logging_mixin.py:188} INFO - Downloading from: https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet
+[2026-04-13T21:09:25.653+0000] {logging_mixin.py:188} INFO - Downloaded 45.5 MB to /opt/***/data/raw/data.parquet
+[2026-04-13T21:09:25.716+0000] {logging_mixin.py:188} INFO - Extract complete
+[2026-04-13T21:09:25.720+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-04-13T21:09:25.737+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=nyc_taxi_daily_etl, task_id=extract, execution_date=20260413T205714, start_date=20260413T210921, end_date=20260413T210925
+[2026-04-13T21:09:25.806+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-04-13T21:09:25.843+0000] {taskinstance.py:3281} INFO - 1 downstream tasks scheduled from follow-on schedule check
